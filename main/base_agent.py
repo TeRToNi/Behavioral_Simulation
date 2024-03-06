@@ -16,13 +16,13 @@ class Animal:
         self.nowTick = 0
 
     def __str__(self):
-        return (f"Simulation Agents 1.3.6V""\n"
+        return ("Simulation Agents 1.3.6V""\n"
                 f"Hungry - {self.hungry}""\n"
                 f"Thirst - {self.thirst}""\n"
                 f"Now tick - {self.nowTick}""\n"
                 f"Coordinates - {self.coordinates}""\n"
                 f"Food coordinates - {self.foodCoordinates}""\n"
-                f"___________________________")
+                "___________________________")
 
     def everyTick(self):
         self.nowTick += 1

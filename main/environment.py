@@ -1,13 +1,19 @@
 from base_agent import Animal
-import random
 from GUI import *
+import random
 
 pastCoordinates = []
-coordinates = [10, 20, 0, 0]
+coordinates = [400, 400, 0, 0]
 foodCoordinates = [coordinates[0] + random.randint(-20, 20),
-                   coordinates[1] + random.randint(-20, 20)]
+                   coordinates[1] + random.randint(-20, 20),
+                   coordinates[0] + random.randint(-20, 20),
+                   coordinates[1] + random.randint(-20, 20)
+                   ]
 waterCoordinates = [coordinates[0] + random.randint(-20, 20),
-                    coordinates[1] + random.randint(-20, 20)]
+                    coordinates[1] + random.randint(-20, 20),
+                    coordinates[0] + random.randint(-20, 20),
+                    coordinates[1] + random.randint(-20, 20)
+                    ]
 
 animal = Animal(coordinates, foodCoordinates, waterCoordinates, 5)
 
@@ -15,17 +21,19 @@ running = True
 while running:
     animal.main()
     coordinates.append(coordinates)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = not running
-    clock.tick(FPS)
-    all_sprites.update(coordinates[0], coordinates[1])
 
-    screen.fill(BLACK)
-    all_sprites.draw(screen)
+    for i in pygame.event.get():
+        if i.type == pygame.QUIT:
+            sys.exit()
 
-    pygame.display.flip()
-    animal.waterCoordinates.append(animal.coordinates[0] + random.randint(-20, 20))
-    animal.waterCoordinates.append(animal.coordinates[1] + random.randint(-20, 20))
-    animal.foodCoordinates.append(animal.coordinates[0] + random.randint(-20, 20))
-    animal.foodCoordinates.append(animal.coordinates[1] + random.randint(-20, 20))
+    sc.fill(GREEN)
+    sc.blit(surf, rect)
+    pygame.display.update()
+
+    rect.x = animal.coordinates[0]
+    rect.y = animal.coordinates[1]
+
+    #animal.waterCoordinates.append(animal.coordinates[0] + random.randint(-20, 20))
+    #animal.waterCoordinates.append(animal.coordinates[1] + random.randint(-20, 20))
+    #animal.foodCoordinates.append(animal.coordinates[0] + random.randint(-20, 20))
+    #animal.foodCoordinates.append(animal.coordinates[1] + random.randint(-20, 20))
