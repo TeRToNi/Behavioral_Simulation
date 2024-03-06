@@ -9,4 +9,6 @@ sc = pygame.display.set_mode((800, 800))
 surf = pygame.Surface((10, 10))
 surf.fill(WHITE)
 
-rect = surf.get_rect()  # создается экземпляр Rect
+rect = surf.get_rect()
+
+# TODO: Добавить возможность создавать объект источников воды и еды.

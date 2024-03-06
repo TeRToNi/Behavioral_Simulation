@@ -124,15 +124,3 @@ class Animal:
 
     def goBreed(self):
         pass
-
-    def main(self):
-        self.everyTick()
-        self.detectNeed()
-        if self.need == 0:
-            self.goDrink()
-        elif self.need == 1:
-            self.goFood()
-        else:
-            self.goBreed()
-        print(self)
-        time.sleep(1)
