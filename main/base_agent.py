@@ -1,6 +1,6 @@
 import math
 import random
-import time
+import sys
 
 
 class Animal:
@@ -22,9 +22,13 @@ class Animal:
                 f"Now tick - {self.nowTick}""\n"
                 f"Coordinates - {self.coordinates}""\n"
                 f"Food coordinates - {self.foodCoordinates}""\n"
+                f"Water coordinates - {self.waterCoordinates}""\n"
                 "___________________________")
 
     def everyTick(self):
+        if self.hungry | self.thirst <= 0:
+            print("The animal died.")
+            sys.exit()
         self.nowTick += 1
         self.hungry -= 1
         self.thirst -= 1
@@ -43,19 +47,19 @@ class Animal:
             self.coordinates[1] - targetCoordinates[1]) ** 2))
         return distanceToTarget
 
-    def move(self, targetCoordinates: list[int]):
+    def move(self, targetCoordinates: list[int]) -> None:
         distance = self.vision(targetCoordinates)
         self.nowTick += round(distance / self.speed)
         for i in range(round(distance / self.speed)):
             self.everyTick()
         self.coordinates = targetCoordinates
 
-    def walk(self):
+    def walk(self) -> None:
         coords = [random.randint(self.coordinates[0] - self.speed, self.coordinates[0] + self.speed),
                   random.randint(self.coordinates[1] - self.speed, self.coordinates[1] + self.speed)]
         self.move(coords)
 
-    def distance(self, Coordinates: list[int]):
+    def distance(self, Coordinates: list[int]) -> int:
         k = 0
         a = []
         distances = []
@@ -69,9 +73,9 @@ class Animal:
                 closeTargets.append(a[k + 1])
                 distances.append(distanceToTarget)
             k += 2
-            return distances, a, closeTargets
+        return distances, a, closeTargets
 
-    def goFood(self):
+    def goFood(self) -> None:
         distances, a, closeFood = self.distance(self.foodCoordinates)
         i = 0
         if distances:
@@ -96,7 +100,7 @@ class Animal:
             else:
                 self.hungry += 5
 
-    def goDrink(self):
+    def goDrink(self) -> None:
         distances, a, closeWater = self.distance(self.waterCoordinates)
         i = 0
         if distances:
@@ -122,5 +126,5 @@ class Animal:
                 self.thirst += 5
             print(self.thirst)
 
-    def goBreed(self):
+    def goBreed(self) -> None:
         pass
