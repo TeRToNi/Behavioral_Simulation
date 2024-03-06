@@ -23,6 +23,7 @@ class Animal:
                 f"Coordinates - {self.coordinates}""\n"
                 f"Food coordinates - {self.foodCoordinates}""\n"
                 f"___________________________")
+
     def everyTick(self):
         self.nowTick += 1
         self.hungry -= 1
