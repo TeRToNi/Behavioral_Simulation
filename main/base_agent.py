@@ -42,7 +42,7 @@ class Animal:
         elif self.hungry < self.thirst or self.thirst > 99:
             self.need = 1
 
-    def vision(self, targetCoordinates: list[int]) -> list[int]:
+    def vision(self, targetCoordinates: list[int]) -> int:
         distanceToTarget = round(math.sqrt(abs(self.coordinates[0] - targetCoordinates[0]) ** 2 + abs(
             self.coordinates[1] - targetCoordinates[1]) ** 2))
         return distanceToTarget
